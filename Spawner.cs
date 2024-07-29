@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject pumpkin; // Reference to the arrow prefab
+    public GameObject pumpkin; // Reference to the pumpkin prefab
     private float spawnInterval = 3f; // Spawn interval in seconds
     private float timeSinceLastSpawn = 0f; // Time since last spawn
 
@@ -27,29 +27,38 @@ public class Spawner : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition()
     {
-        // Define the inner area bounds (adjust as needed)
+        // Define the outer area bounds (adjust as needed)
         float minX = -70f;
         float maxX = 70f;
         float minY = -40f;
         float maxY = 40f;
 
-        // Generate random coordinates within the specified bounds
-        float x = Random.Range(minX, maxX);
-        float y = Random.Range(minY, maxY);
+        // Randomly select a direction (0: north, 1: south, 2: east, 3: west)
+        int direction = Random.Range(0, 4);
 
-        // Check if the generated position is too close to the box
-        float minDistanceToBox = 10f; // Adjust this distance as needed
-        Vector3 boxPosition = new Vector3(0f, 0f, 0f); // Get the position of your box GameObject 
-        Vector3 spawnPosition = new Vector3(x, y, 0f);
+        float x = 0f;
+        float y = 0f;
 
-        while (Vector3.Distance(spawnPosition, boxPosition) < minDistanceToBox)
+        switch (direction)
         {
-            x = Random.Range(minX, maxX);
-            y = Random.Range(minY, maxY);
-            spawnPosition = new Vector3(x, y, 0f);
+            case 0: // North
+                y = maxY;
+                x = Random.Range(0,0);
+                break;
+            case 1: // South
+                y = minY;
+                x = Random.Range(0, 0);
+                break;
+            case 2: // East
+                x = maxX;
+                y = Random.Range(0, 0);
+                break;
+            case 3: // West
+                x = minX;
+                y = Random.Range(0, 0);
+                break;
         }
 
-        return spawnPosition;
+        return new Vector3(x, y, 0f);
     }
-
 }
