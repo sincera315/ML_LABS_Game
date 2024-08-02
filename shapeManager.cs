@@ -84,12 +84,12 @@ public class ShapeManager : MonoBehaviour
             Debug.Log("Button instantiated.");
 
             // Find the placeholder and set the shape
-            Transform shapePlaceholder = button.transform.Find("ShapePlaceholder");
+            Transform Shapeholder = button.transform.Find("Shapeholder");
 
-            if (shapePlaceholder != null)
+            if (Shapeholder != null)
             {
                 // Add the shape to the placeholder
-                GameObject shapeInstance = Instantiate(shape, shapePlaceholder.position, Quaternion.identity, shapePlaceholder);
+                GameObject shapeInstance = Instantiate(shape, Shapeholder.position, Quaternion.identity, Shapeholder);
                 shapeInstance.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); // Adjust scale as needed
                 shapeInstance.transform.localPosition = Vector3.zero; // Center the shape within the placeholder
 
